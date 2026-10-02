@@ -16,33 +16,33 @@ class RegistryClient:
         return resp
 
 # ---------- YOUR CODE: fill in the six methods below ----------
-def get_services(self, limit=10, offset=0, status=None):
-    # WORKED EXAMPLE: GET /services with optional ?status=
-    params = {"limit": limit, "offset": offset}
-    if status:
-        params["status"] = status
-    return self._request("GET", "services", params=params).json()
+    def get_services(self, limit=10, offset=0, status=None):
+        # WORKED EXAMPLE: GET /services with optional ?status=
+        params = {"limit": limit, "offset": offset}
+        if status:
+            params["status"] = status
+        return self._request("GET", "services", params=params).json()
 
-def get_service(self, service_id): # GET /services/{id} -> parsed JSON
+    def get_service(self, service_id): # GET /services/{id} -> parsed JSON
  # YOUR CODE
-    return self._request("GET", f"services/{service_id}").json()
+        return self._request("GET", f"services/{service_id}").json()
 
-def create_service(self, payload): # POST /services -> parsed JSON (201)
+    def create_service(self, payload): # POST /services -> parsed JSON (201)
 # YOUR CODE
-    return self._request("POST", "services", json=payload).json()
+        return self._request("POST", "services", json=payload).json()
 
-def update_service(self, service_id, payload): # PUT /services/{id} (full replace)
+    def update_service(self, service_id, payload): # PUT /services/{id} (full replace)
 # YOUR CODE
-    return self._request("PUT", f"services/{service_id}", json=payload).json()
+        return self._request("PUT", f"services/{service_id}", json=payload).json()
 
-def patch_service(self, service_id, patch): # PATCH /services/{id} (partial)
+    def patch_service(self, service_id, patch): # PATCH /services/{id} (partial)
 # YOUR CODE
-    return self._request("PATCH", f"services/{service_id}", json=patch).json()
+        return self._request("PATCH", f"services/{service_id}", json=patch).json()
 
-def delete_service(self, service_id): # DELETE -> return True on 204
+    def delete_service(self, service_id): # DELETE -> return True on 204
 # YOUR CODE
-    return self._request("DELETE", f"services/{service_id}").status_code == 204
+        return self._request("DELETE", f"services/{service_id}").status_code == 204
 
-def health(self): # GET /health -> parsed JSON
+    def health(self): # GET /health -> parsed JSON
 # YOUR CODE
-    return self._request("GET", "health").json()
+        return self._request("GET", "health").json()
