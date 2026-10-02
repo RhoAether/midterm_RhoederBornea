@@ -11,7 +11,6 @@ for svc in data.get("services"):
         status_counts[status] += 1        
     if status == "healthy":
         healthy_services.append(svc) 
-
 healthy_names = sorted([s["name"] for s in healthy_services])
 with open("healthy_services.json", "w") as f:
     json.dump({"services": healthy_services}, f, indent=4)    
