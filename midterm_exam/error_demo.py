@@ -19,7 +19,6 @@ def main():
         good_client = RegistryClient()
         good_client.get_service(9999)
     except requests.exceptions.HTTPError as exc:
-        # Pattern P5: Inspect response status code
         if exc.response is not None and exc.response.status_code == 404:
             print("What happened: Request failed with HTTP 404 Not Found.")
             print("Probable cause: Service ID 9999 does not exist in the registry catalog.")
