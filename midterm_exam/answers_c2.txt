@@ -1,0 +1,16 @@
+1. PUT replaces an entire resource with a new representation, requiring a full payload, whereas PATCH performs a partial update on only the specified fields without altering unmentioned fields. 
+At AeroPay, PUT is appropriate when re-deploying a microservice specification completely from scratch, while PATCH is ideal when temporarily changing a service's status to "maintenance" or updating just its version.
+
+2. Idempotency ensures that executing a sync operation multiple times yields the exact same system state without creating duplicate records or unintended side effects. 
+In sync_registry.py, idempotency was guaranteed by fetching existing registered service names first; if a service name already existed, the script issued a PATCH request to update it rather than issuing a POST request to create a duplicate.
+
+3. For JSON, a strength is native support across Web APIs and browsers, while a weakness is lack of support for code comments. 
+For YAML, a strength is clean human readability with comment support, while a weakness is sensitivity to indentation whitespace. 
+For XML, a strength is robust schema validation via XSD, while a weakness is high verbosity due to closing tags.
+
+4. HTTP 401 means Unauthorized; check the client's API key header (X-API-Key) first. 
+HTTP 404 means Not Found; check the requested URL path or resource ID parameter first. 
+HTTP 500 means Internal Server Error; check the server-side logs and backend traceback first to identify unhandled exceptions.
+
+5. A local mock API allows rapid offline development, predictable unit testing, and isolated workflow verification without impacting live infrastructure. 
+However, a mock API cannot verify real network latency, live database constraints, actual third-party integrations, or real server infrastructure performance under heavy load.
